@@ -2,3 +2,24 @@
 
 /* 脱出成功後のストーリーとメッセージカード */
 .escape-story{animation:appear .85s ease both}.escape-narrative{font-size:clamp(18px,3vw,25px);line-height:2.2;margin:30px auto 36px;max-width:640px}.message-page{text-align:center;max-width:1100px;margin:35px auto;padding:12px;animation:appear .7s ease both}.message-heading{font-size:clamp(23px,4vw,42px);font-weight:900;color:#ffd6e9}.message-page h2{margin:22px 0 30px}.message-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:24px;margin-bottom:35px}.message-card{background:linear-gradient(150deg,#fffaf2,#ffe8f1);color:#422a3b;border:5px double #d88aaa;border-radius:18px;padding:clamp(24px,5vw,45px);box-shadow:0 12px 35px #0005;text-align:left;min-height:320px;animation:appear .6s ease both}.message-card-number{color:#a05d80;font-weight:800;letter-spacing:.15em;font-size:13px;border-bottom:1px solid #d7a4bb;padding-bottom:14px}.message-card p{white-space:pre-wrap;line-height:2.15;font-size:clamp(16px,2.4vw,19px);margin:24px 0}.message-sender{text-align:right;font-weight:800;color:#93496f;font-size:18px}@keyframes appear{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* 牢屋をイメージしたダークな監禁部屋テーマ */
+:root{color:#f0ece2;background:#0b1015}
+body{background:linear-gradient(90deg,transparent 0 7%,#05070988 7.4% 8.2%,transparent 8.6% 23%,#05070988 23.4% 24.2%,transparent 24.6% 39%,#05070988 39.4% 40.2%,transparent 40.6% 55%,#05070988 55.4% 56.2%,transparent 56.6% 71%,#05070988 71.4% 72.2%,transparent 72.6% 87%,#05070988 87.4% 88.2%,transparent 88.6%),radial-gradient(ellipse at 50% 5%,#38434a 0%,#171f26 42%,#090d12 100%);background-attachment:fixed}
+header{background:#10171ef0;border-bottom:3px solid #66717a;box-shadow:0 6px 20px #0009}
+.hero,.panel{background:linear-gradient(145deg,#222b32f2,#121a20f5);border:2px solid #58646b;border-radius:9px;box-shadow:inset 0 0 0 2px #101519,0 10px 30px #0008}
+.hero{position:relative;overflow:hidden}
+.hero:before{content:' ';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 76px,#060a0c75 78px 85px,transparent 87px 150px);pointer-events:none;opacity:.33}
+.hero>*{position:relative}
+.timer{color:#f3cc7b;text-shadow:0 0 20px #d1882777}
+button{background:linear-gradient(120deg,#73502e,#b08348);border:1px solid #d6ae6d;border-radius:7px;color:#fff9e9}
+button.secondary{background:#37424b;border-color:#657580}
+button.danger{background:linear-gradient(120deg,#832b30,#b34b43);border-color:#d8766d}
+input{background:#0a1117;border:2px solid #64727c;border-radius:7px}
+input:focus{outline-color:#e2b76b}
+.mission{border-bottom-color:#45535c}.tag{color:#c0c8cc}
+#toast{background:#e8d8b4;color:#28231a}.dialog{background:#19232a;border:3px solid #879096;border-radius:9px}
+.message-card{background:linear-gradient(150deg,#fffaf2,#ffe8f1);border-color:#b9926a}
+@media(max-width:650px){body{background-size:auto;background-attachment:scroll}}
+
+.noticeRules{margin:18px auto;padding:14px 20px;border:1px solid #ba8c59;border-radius:10px;background:rgba(20,13,10,.7);text-align:left}.noticeRules p{margin:9px 0;line-height:1.7}

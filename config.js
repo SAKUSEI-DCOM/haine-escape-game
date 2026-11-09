@@ -1,4 +1,3 @@
-
 export const firebaseConfig = {
   apiKey: "AIzaSyCEo2h9hjYgpAo9EUf0w3RT6CcGjxdHT6c",
   authDomain: "haine-escape-game.firebaseapp.com",
