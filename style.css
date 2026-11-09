@@ -23,3 +23,28 @@ input:focus{outline-color:#e2b76b}
 @media(max-width:650px){body{background-size:auto;background-attachment:scroll}}
 
 .noticeRules{margin:18px auto;padding:14px 20px;border:1px solid #ba8c59;border-radius:10px;background:rgba(20,13,10,.7);text-align:left}.noticeRules p{margin:9px 0;line-height:1.7}
+
+/* Non-dismissible one-shot performance challenge */
+.performance-lock{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;padding:18px;background:rgba(0,0,0,.94);backdrop-filter:blur(8px)}
+.performance-card{width:min(920px,100%);padding:clamp(28px,6vw,70px) 18px;text-align:center;border:4px solid #b18b56;border-radius:20px;background:linear-gradient(140deg,#24252b,#0d0d11);box-shadow:0 0 80px #000, inset 0 0 60px #000}
+.performance-icon{font-size:clamp(22px,4vw,36px);color:#ffce82;font-weight:900}
+.performance-card h2{font-size:clamp(32px,6vw,78px);line-height:1.35;color:#fff;margin:30px auto;text-shadow:0 4px 20px #f43c3c88}
+.performance-card p{color:#e1d8c8;font-size:clamp(15px,2vw,20px)}
+.performance-card button{margin-top:25px;font-size:clamp(20px,3vw,30px);padding:16px 65px;background:linear-gradient(#a13a39,#651e23)}
+
+/* Prison visual refresh v2: obvious cell bars, stone masonry, and iron doors. */
+body{position:relative;isolation:isolate;background-color:#10161b;background-image:linear-gradient(180deg,#06090dd9,#111920b5 42%,#090d12f5),repeating-linear-gradient(0deg,transparent 0 67px,#45515a70 68px 71px,transparent 72px 139px),repeating-linear-gradient(90deg,#2a343c 0 2px,transparent 3px 126px,#45515a 127px 130px,transparent 131px 252px);background-attachment:fixed}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:repeating-linear-gradient(90deg,transparent 0 105px,#020407b0 106px 119px,#63717b66 121px 123px,transparent 125px 166px),linear-gradient(180deg,#060a0c66 0 9px,transparent 10px 74%,#080c0fa6 75% 87%,transparent 88%);opacity:.55}
+header{position:relative;border-bottom:6px ridge #8c9498;background:linear-gradient(90deg,#101820,#2a333b 50%,#101820);box-shadow:0 8px 25px #000d}
+header::after{content:"";position:absolute;left:0;right:0;bottom:-13px;height:7px;background:repeating-linear-gradient(90deg,#070b0e 0 25px,#a0a7a8 26px 30px,#070b0e 31px 85px);pointer-events:none}
+.hero,.panel{position:relative;overflow:hidden;border:3px solid #69747a;background:linear-gradient(145deg,#202b33f5,#10171df7);box-shadow:inset 0 0 0 3px #070c0f,0 14px 35px #000c;border-radius:5px}
+.hero::before,.panel::before{content:"";position:absolute;inset:0 0 auto;height:21px;background:repeating-linear-gradient(90deg,#0a0e11 0 42px,#889399 43px 48px,#0a0e11 49px 90px);opacity:.72;pointer-events:none}
+.hero>* , .panel>*{position:relative}
+.hero{padding-top:48px}.panel{padding-top:32px}
+h1,h2{letter-spacing:.055em}h1{color:#e8ded0;text-shadow:0 2px 7px #000}
+h2{color:#e9d6b5}
+.big{color:#f4dbac;text-shadow:0 4px 16px #000}
+button{box-shadow:inset 0 1px #f6e0a955,0 4px 0 #251c13,0 7px 13px #0007}
+button:focus-visible,input:focus-visible{outline:3px solid #f2d184;outline-offset:3px}
+#performanceLock{z-index:1000}
+@media(max-width:650px){body{background-attachment:scroll}body::before{opacity:.3}.hero{padding-top:40px}.panel{padding-top:30px}}
