@@ -48,3 +48,26 @@ button{box-shadow:inset 0 1px #f6e0a955,0 4px 0 #251c13,0 7px 13px #0007}
 button:focus-visible,input:focus-visible{outline:3px solid #f2d184;outline-offset:3px}
 #performanceLock{z-index:1000}
 @media(max-width:650px){body{background-attachment:scroll}body::before{opacity:.3}.hero{padding-top:40px}.panel{padding-top:30px}}
+
+/* PRISON THEME v3 — unmistakable barred cell and masonry, both sites */
+:root{color-scheme:dark;--iron:#87949b;--brass:#c59b57;--stone:#202b32}
+body{background-color:#0a1015;background-image:radial-gradient(ellipse at 50% -10%,#53616a66,transparent 55%),linear-gradient(180deg,#090e12cc,#090d11e8),repeating-linear-gradient(0deg,transparent 0 67px,#64717a75 68px 71px,transparent 72px 139px),repeating-linear-gradient(90deg,#2b363e 0 3px,transparent 4px 127px,#59646d 128px 132px,transparent 133px 254px)!important;background-attachment:fixed}
+body::before{position:fixed;inset:0;z-index:-1;opacity:.55;background:repeating-linear-gradient(90deg,transparent 0 82px,#05090d 83px 97px,#91a0a94d 98px 100px,transparent 101px 164px),linear-gradient(180deg,transparent 0 17%,#05090de0 17.2% 19.3%,transparent 19.5% 79%,#05090de0 79.2% 81.3%,transparent 81.5%);pointer-events:none}
+header{border-bottom:7px solid #65727a!important;background:linear-gradient(180deg,#29343d,#0d151b)!important;box-shadow:0 7px 0 #080d11,0 13px 30px #000e!important}
+header h1::before{content:'⛓  ';color:#d6b071}
+.hero,.panel{border:3px solid #667781!important;border-radius:3px!important;background:linear-gradient(135deg,#29353df2,#11191ff5 55%,#0b1217fa)!important;box-shadow:inset 0 0 0 3px #0a0f12,inset 0 0 38px #0008,0 14px 38px #000c!important}
+.hero::before,.panel::before{height:17px!important;inset:0 0 auto!important;background:repeating-linear-gradient(90deg,#10171b 0 38px,#9ba6a9 39px 45px,#10171b 46px 80px)!important;opacity:.9!important}
+.hero::after{content:'🔒  PRISON CELL  •  ESCAPE WITHIN 12 HOURS';display:block;position:relative;margin:28px auto 0;padding:10px 12px;width:fit-content;max-width:100%;font-size:11px;letter-spacing:.13em;color:#c9b78e;border-top:1px solid #6c7880}
+.panel h2{padding-bottom:12px;border-bottom:2px solid #485761;text-transform:uppercase}
+.timer{font-variant-numeric:tabular-nums;color:#f0cb84!important;text-shadow:0 0 12px #d9993670,0 3px 2px #000!important}
+.count{color:#e2d5b2;text-shadow:0 3px 10px #000}.count.zero{color:#ff5364}
+button{background:linear-gradient(#c3a36e,#82603b 50%,#5a4029)!important;border:2px solid #d0b17b!important;color:#fff8e8!important;border-radius:4px!important;text-shadow:0 1px 2px #0008;box-shadow:inset 0 1px #fff5cf55,0 4px 0 #302215,0 8px 14px #0007!important}
+button.secondary{background:linear-gradient(#52606a,#2c3942)!important;border-color:#83929a!important}
+button.danger,.performance-card button{background:linear-gradient(#b9504e,#6e252a)!important;border-color:#df8a7e!important}
+button:disabled{filter:grayscale(.7);opacity:.45}
+input{background:#070e13!important;border:2px solid #7c8b91!important;box-shadow:inset 0 3px 12px #0009;color:#f4e7d0!important}
+.dialog{border:4px solid #7b898d!important;background:linear-gradient(135deg,#26333b,#0d1419)!important}
+.performance-lock{z-index:9999!important}
+.performance-card{border-radius:4px!important}
+.message-card{border-color:#bd9b6b!important}
+@media(max-width:650px){body{background-attachment:scroll}.hero::after{font-size:9px}.panel{padding:32px 14px 15px!important}header h1::before{content:'🔒 '}}
