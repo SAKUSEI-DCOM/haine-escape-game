@@ -23,8 +23,10 @@ async function mission(i){
  if(i===2){
   const snap=await getDocs(collection(db,'rooms',code,'participants'));
   const people=snap.docs.map(d=>({uid:d.id,joinedAt:d.data().joinedAt||0})).sort((a,b)=>a.joinedAt-b.joinedAt||a.uid.localeCompare(b.uid));
-  // Spread four images across participants; three participants get three different images.
-  people.forEach((p,n)=>assignments[p.uid]=n%4);
+  // Priority: bus (index 1), fish (2), kana chart (3), cat (0).
+  // Persist UID-to-image assignments in Firestore so reloads do not reshuffle.
+  const priority=[1,2,3,0];
+  people.forEach((p,n)=>assignments[p.uid]=priority[n%priority.length]);
  }
  let updated=false;
  await runTransaction(db,async tx=>{const ref=roomRef(code),s=await tx.get(ref),r=s.data();if(r.status!=='playing'||r.missions[i])return;let a=[...r.missions];a[i]=true;updated=true;tx.update(ref,{missions:a,clueEvent:[0,1,2,4].includes(i)?r.clueEvent+1:r.clueEvent,clueIndex:[0,1,2,4].includes(i)?i:r.clueIndex??null,...(i===2?{mission3Assignments:assignments}:{})})});
