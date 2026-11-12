@@ -1,15 +1,16 @@
 import {messageCards} from './messages.js';
 import {initializeApp} from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js';
 import {getAuth,signInAnonymously,onAuthStateChanged} from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js';
-import {getFirestore,doc,collection,query,where,onSnapshot,getDoc,setDoc,runTransaction,serverTimestamp} from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
+import {getFirestore,doc,collection,query,where,onSnapshot,getDoc,getDocs,setDoc,runTransaction,serverTimestamp} from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js';
 import {firebaseConfig} from './config.js';
 const app=initializeApp(firebaseConfig);export const db=getFirestore(app),auth=getAuth(app);
-export {doc,collection,query,where,onSnapshot,getDoc,setDoc,runTransaction,serverTimestamp};
+export {doc,collection,query,where,onSnapshot,getDoc,getDocs,setDoc,runTransaction,serverTimestamp};
 export async function ready(){if(auth.currentUser)return auth.currentUser;await signInAnonymously(auth);return auth.currentUser}
 export const $=id=>document.getElementById(id);
 export function notice(t,ms=2400){const e=$('toast');e.textContent=t;e.classList.add('show');setTimeout(()=>e.classList.remove('show'),ms)}
 export const missions=['投げられたギフトの総ポイント数が3万を突破する。','来た初見さん8人に挨拶をしてもらう。','来たリスナーに星座を聞き、12星座全てをコンプリートする。','リスナーから勧められたゲームをクリアする。','★1から★5バッチまでのリスナーを集めてイリアム内で集合写真を撮る。'];
-export const clues={0:'assets/clue1.png',1:'assets/clue2.png',2:'assets/clue3.png',4:'assets/clue4.png'};
+export const clues={0:'assets/mission1_listener.png',1:'assets/clue2.png',2:'assets/mission3_listener_1.png',4:'assets/clue3.png'};
+export const mission3Variants=['assets/mission3_listener_1.png','assets/mission3_listener_2.png','assets/mission3_listener_3.png','assets/mission3_listener_4.png'];
 export const duration=12*3600000, cooldown=30*60000;
 export function fmt(ms){let m=Math.max(0,Math.ceil(ms/60000));return `${String(Math.floor(m/60)).padStart(2,'0')}:${String(m%60).padStart(2,'0')}`}
 export function modal(html,close=true){const x=$('modal');x.innerHTML=`<div class="dialog">${close?'<button class="close" id="closeModal">×</button>':''}${html}</div>`;x.classList.remove('hidden');if(close)$('closeModal').onclick=()=>x.classList.add('hidden')}
