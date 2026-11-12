@@ -1,4 +1,4 @@
-import {auth,ready,db,doc,collection,onSnapshot,getDoc,getDocs,setDoc,runTransaction,$,notice,modal,hideModal,missions,fmt,duration,cooldown,roomRef,resultPage} from './common.js';
+import {auth,ready,db,doc,collection,onSnapshot,getDoc,getDocs,setDoc,runTransaction,$,notice,modal,hideModal,missions,clues,mission3Variants,fmt,duration,cooldown,roomRef,resultPage} from './common.js';
 const SECRET='Vm12251110';let code=null,room=null,unsubs=[],audio=null,activeSab='',lastEvent=0,seenSab='',timerHandle=null,closingPerformance=false;
 const intro=`記念すべき1周年配信を始めた超弩級配信者這音に、とあるリスナーからとあるURLが届く。\n\n迂闊な這音はそのURLをクリックしてしまった！\n\n飛ばされたのは「監禁部屋」と書かれたサイト。\n\nナスカ『這音さん騙されましたね。ここは12時間以内に10桁のパスワードを当てないと罰ゲームを受けるサイトです。ｱﾎﾈー。』\n\nそして這音の10桁のパスワードを当てる戦いが始まるのであった・・・`;
 $('introText').textContent=intro;
@@ -8,7 +8,16 @@ $('start').onclick=async()=>{let pass=prompt('入室用パスワードを入力�
 $('enter').onclick=async()=>{const ref=roomRef(code);await runTransaction(db,async tx=>{let s=await tx.get(ref);if(s.data().status==='intro')tx.update(ref,{status:'playing',startedAt:Date.now(),lastRecoveryAt:Date.now()})});show('game')};
 async function recover(){if(!room||room.status!=='playing')return;let now=Date.now();if(!room.lastRecoveryAt||now-room.lastRecoveryAt<cooldown)return;await runTransaction(db,async tx=>{const ref=roomRef(code),s=await tx.get(ref),r=s.data();if(r.status!=='playing')return;let n=Math.floor((Date.now()-r.lastRecoveryAt)/cooldown);if(n>0)tx.update(ref,{attempts:Math.min(100,r.attempts+n),lastRecoveryAt:r.lastRecoveryAt+n*cooldown})}).catch(console.warn)}
 function tick(){if(!room||room.status!=='playing')return;let remaining=room.startedAt+duration-Date.now();$('timer').textContent=fmt(remaining);if(remaining<=0){runTransaction(db,async tx=>{let ref=roomRef(code),s=await tx.get(ref);if(s.data().status==='playing')tx.update(ref,{status:'failed',endedAt:Date.now()})}).catch(console.warn)}recover()}
-function render(){if(!room)return;$('roomBadge').textContent='部屋 '+code;$('copy').classList.remove('hidden');if(room.status==='intro'){show('intro');return}if(['won','failed'].includes(room.status)){performanceLock(false);stopAudio();resultPage(room.status==='won');if(room.status==='failed')modal('<div class="big">💥 BOOM!</div><h2>脱出失敗！</h2>');setTimeout(hideModal,2800);return}show('game');$('attempts').textContent=room.attempts;$('attempts').classList.toggle('zero',room.attempts===0);let checking=Date.now()<(room.checkingUntil||0);$('submit').disabled=room.attempts<=0||checking;$('checking').classList.toggle('hidden',!checking);$('missions').innerHTML=missions.map((m,i)=>`<div class="mission"><span>${i+1}. ${m}</span><button data-m="${i}" ${room.missions[i]?'disabled':''}>${room.missions[i]?'✓ 達成':'クリア'}</button></div>`).join('');document.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>mission(+b.dataset.m));renderSab();tick()}
+function render(){if(!room)return;$('roomBadge').textContent='部屋 '+code;$('copy').classList.remove('hidden');if(room.status==='intro'){show('intro');return}if(['won','failed'].includes(room.status)){performanceLock(false);stopAudio();resultPage(room.status==='won');if(room.status==='failed')modal('<div class="big">💥 BOOM!</div><h2>脱出失敗！</h2>');setTimeout(hideModal,2800);return}show('game');$('attempts').textContent=room.attempts;$('attempts').classList.toggle('zero',room.attempts===0);let checking=Date.now()<(room.checkingUntil||0);$('submit').disabled=room.attempts<=0||checking;$('checking').classList.toggle('hidden',!checking);$('missions').innerHTML=missions.map((m,i)=>`<div class="mission"><span>${i+1}. ${m}</span><button data-m="${i}" ${room.missions[i]?'disabled':''}>${room.missions[i]?'✓ 達成':'クリア'}</button></div>`).join('');document.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>mission(+b.dataset.m));renderHostClues();renderSab();tick()}
+function renderHostClues(){
+ const target=$('hostClues');if(!target)return;
+ const items=[];
+ // Host history contains only clues actually displayed on the host screen.
+ if(room.missions[0])items.push(['ミッション①・這音さん用','assets/mission1_host.png']);
+ if(room.missions[2])items.push(['ミッション③・這音さん用','assets/mission3_host.png']);
+ target.innerHTML=items.length?items.map(([label,src],i)=>`<button class="secondary" type="button" data-host-clue="${i}"><img src="${src}" alt="${label}"><span>${label}</span></button>`).join(''):'<p class="tag">まだ表示された謎画像はありません。</p>';
+ target.querySelectorAll('[data-host-clue]').forEach(button=>button.onclick=()=>{const [label,src]=items[Number(button.dataset.hostClue)];modal(`<h2>${label}</h2><img src="${src}" alt="${label}">`)});
+}
 async function mission(i){
  let assignments={};
  if(i===2){

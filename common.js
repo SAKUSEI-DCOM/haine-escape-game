@@ -9,7 +9,7 @@ export async function ready(){if(auth.currentUser)return auth.currentUser;await 
 export const $=id=>document.getElementById(id);
 export function notice(t,ms=2400){const e=$('toast');e.textContent=t;e.classList.add('show');setTimeout(()=>e.classList.remove('show'),ms)}
 export const missions=['投げられたギフトの総ポイント数が3万を突破する。','来た初見さん8人に挨拶をしてもらう。','来たリスナーに星座を聞き、12星座全てをコンプリートする。','リスナーから勧められたゲームをクリアする。','★1から★5バッチまでのリスナーを集めてイリアム内で集合写真を撮る。'];
-export const clues={0:'assets/mission1_listener.png',1:'assets/clue2.png',2:'assets/mission3_listener_1.png',4:'assets/clue3.png'};
+export const clues={0:'assets/mission1_listener.png',1:'assets/clue2.png',2:'assets/mission3_listener_1.png',4:'assets/clue4.png'};
 export const mission3Variants=['assets/mission3_listener_1.png','assets/mission3_listener_2.png','assets/mission3_listener_3.png','assets/mission3_listener_4.png'];
 export const duration=12*3600000, cooldown=30*60000;
 export function fmt(ms){let m=Math.max(0,Math.ceil(ms/60000));return `${String(Math.floor(m/60)).padStart(2,'0')}:${String(m%60).padStart(2,'0')}`}
